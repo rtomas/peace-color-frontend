@@ -1,3 +1,8 @@
+# Peace Color
+
+Test SC
+https://sepolia.etherscan.io/address/0x6Ef1196F1b34Bf79A9d8DCB2AF6ef6A5EaC0CaD2
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
 ## Getting Started
