@@ -22,39 +22,29 @@ const Menu = () => {
           <BiLeftArrowAlt />
         </button>
       </div>
-      <div className="text-center">🕊️ Peace IA Colors</div>
+      <div className="text-center text-3xl">🕊️ Immutable Peace</div>
       
       { <ConnectButton />}
-      {isConnected && <><AccountInfo /><AddColor /></>}
+      {isConnected && <><AddColor /></>}
       <div>
         
         <p>Links:</p>
         <p>
           *{' '}
-          <a target="_blank" href="https://github.com/rtomas/openColors-web" className="underline">
-            UI Github
+          <a target="_blank" href="https://github.com/rtomas/peace-color-frontend" className="underline">
+            Frontend Github
           </a>
         </p>
         <p>
           *{' '}
-          <a target="_blank" href="https://github.com/rtomas/openColors" className="underline">
+          <a target="_blank" href="https://github.com/rtomas/peace-color-smart-contract" className="underline">
             Smart Contract Github
           </a>
         </p>
-        <p>
-          *{' '}
-          <a target="_blank" href="https://www.subwallet.app/download.html" className="underline">
-            Install subwallet extension to interact
-          </a>
-        </p>
-        <p>
-          *{' '}
-          <a target="_blank" href="https://use.ink/faucet/" className="underline">
-            How it works 
-          </a>
-        </p>
+ 
+
         <br />
-        <div className="text-center">by Tomás Rawski</div>
+        <div className="text-center">by <a target="_blank" href="https://www.tomasrawski.com.ar" className="underline">Tomás Rawski</a></div>
       </div>
     </div>
   ) : (

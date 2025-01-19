@@ -1,4 +1,3 @@
-
 import { Geist, Geist_Mono } from "next/font/google";
 import Menu from "@/components/Menu";
 /* import ColorRow from "@/components/ColorRow"; */
@@ -7,6 +6,7 @@ import { useReadContract } from 'wagmi'
 import { abi}  from '@/abi/PeaceColor.json'
 import Loader from "@/components/Loader";
 import { rgbToHex, type RGB } from "@/utils/colors";
+import { useEffect } from "react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,8 +23,11 @@ export default function Home() {
     abi,
     functionName: 'getColorOrder',
   })
-
-  const colors = data as RGB[];
+  let colors: RGB[] = data as RGB[];
+  if (colors) {
+    // sort colors in a random order
+    colors = [...colors].sort(() => Math.random() - 0.5);
+  }
 
   return (
     <div
