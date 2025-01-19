@@ -22,7 +22,7 @@ const Menu = ({colors}: {colors: RGB[]}) => {
           <BiLeftArrowAlt />
         </button>
       </div>
-      <div className="text-center text-3xl">🕊️ Immutable Peace</div>
+      <div className="text-center text-3xl">🕊️ Inmutable Peace</div>
       
       { <ConnectButton />}
       {isConnected && <><AddColor colors={colors} /></>}
