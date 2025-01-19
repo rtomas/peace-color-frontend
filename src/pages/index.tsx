@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import Menu from "@/components/Menu";
-import ColorRow from "@/components/ColorRow";
+/* import ColorRow from "@/components/ColorRow"; */
 import ColorRowBig from "@/components/ColorRowBig";
 import { useReadContract } from 'wagmi'
 import { abi}  from '@/abi/PeaceColor.json'
 import Loader from "@/components/Loader";
-import { rgbToHex } from "@/utils/colors";
+import { rgbToHex, type RGB } from "@/utils/colors";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,7 +24,7 @@ export default function Home() {
     functionName: 'getColorOrder',
   })
 
-  const colors = data as any[];
+  const colors = data as RGB[];
 
   return (
     <div
@@ -33,7 +33,7 @@ export default function Home() {
       <main className="flex flex-col w-full min-h-screen ">
         <Menu />
         {isLoading && <div><Loader /></div>}
-        {colors && colors.map((color: any, index: number, arr: any) => {
+        {colors && colors.map((color: RGB, index: number, arr: RGB[]) => {
           const col = rgbToHex(color.red, color.green, color.blue);
           // if is the last color, use the same color for the next color
           const nextColor = index === arr.length - 1 ? col : rgbToHex(arr[index + 1].red, arr[index + 1].green, arr[index + 1].blue);
@@ -42,7 +42,7 @@ export default function Home() {
               key={index} 
               color1={col}  
               color2={nextColor}
-              colorName={color.name} 
+              colorName={color.name || ''} 
             />
           );
         })}

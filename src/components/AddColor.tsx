@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { hexToRgb, type RGB } from '@/utils/colors';
-import { useAppKitAccount  } from '@reown/appkit/react'
+/* import { useAppKitAccount  } from '@reown/appkit/react' */
 import { useWriteContract } from 'wagmi'
 import { abi } from '../abi/PeaceColor.json'
-import { Address } from 'viem';
 
 const AddColor = () => {
   const { data: hash, writeContract, isPending } = useWriteContract();
-  const { address } = useAppKitAccount();
   const [color, setColor] = useState<RGB | undefined>(undefined); 
 
   const handleColor = (color: string) => {
@@ -36,7 +34,7 @@ const AddColor = () => {
       address: "0x6Ef1196F1b34Bf79A9d8DCB2AF6ef6A5EaC0CaD2",
       abi,
       functionName: 'addColor',
-      args: [color.r, color.g, color.b, data.name]
+      args: [color.red, color.green, color.blue, data.name]
     })
   };
 useEffect(() => {

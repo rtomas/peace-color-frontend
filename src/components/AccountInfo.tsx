@@ -1,7 +1,7 @@
 'use client'
 import {  useAppKitAccount  } from '@reown/appkit/react'
 export const AccountInfo = () => {
-  const { address, isConnected } = useAppKitAccount();
+  const { address } = useAppKitAccount();
   return (
     <div >
         {address}
