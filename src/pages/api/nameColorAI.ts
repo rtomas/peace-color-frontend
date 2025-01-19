@@ -15,11 +15,11 @@ export default async function handler(
 
   try {
     //req.body {"r":223,"g":124,"b":124}
-    const { r, g, b } = JSON.parse(req.body);
-
+    const { color, colorNames } = JSON.parse(req.body);
+    const {red, green, blue} = color;
     // Validate RGB values
-    if (typeof r !== 'number' || typeof g !== 'number' || typeof b !== 'number' ||
-        r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
+    if (typeof red !== 'number' || typeof green !== 'number' || typeof blue !== 'number' ||
+        red < 0 || red > 255 || green < 0 || green > 255 || blue < 0 || blue > 255) {
       return res.status(400).json({ name: 'Invalid RGB values' });
     }
 
@@ -31,10 +31,10 @@ export default async function handler(
     const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",
         messages: [
-            { role: "system", content: "You are a helpful assistant that creates names for colors that bring peace to the world." },
+            { role: "system", content: "You are a poet with a broad language that creates names for colors that bring peace to the world." },
             {
                 role: "user",
-                content: `Create a name for a color related with PEACE, call to peace in the world or is something very calm that is related to peace with RGB values: R:${r}, G:${g}, B:${b} and maxium 40 characters. Respond with just the name, no explanattion.`,
+                content: `Create a name for a color related with PEACE, call to peace in the world or is something very calm that is related to peace with RGB values: R:${red}, G:${green}, B:${blue} and maxium 40 characters. Please don't repeat similar names to the list of colors: ${colorNames}. Not to use common worlds like serenity, Tranquil, harmony, calm, etc. Respond with just the name, no explanattion.`,
             },
         ],
     });

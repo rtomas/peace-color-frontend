@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { BiRightArrowAlt, BiLeftArrowAlt } from 'react-icons/bi';
 import AddColor from './AddColor';
 import { ConnectButton } from './ConnectButton';
-import { AccountInfo } from './AccountInfo';
 import { useAppKitAccount } from '@reown/appkit/react';
+import { RGB } from '@/utils/colors';
 
-const Menu = () => {
+const Menu = ({colors}: {colors: RGB[]}) => {
   const {isConnected} = useAppKitAccount();
 
 
@@ -25,7 +25,7 @@ const Menu = () => {
       <div className="text-center text-3xl">🕊️ Immutable Peace</div>
       
       { <ConnectButton />}
-      {isConnected && <><AddColor /></>}
+      {isConnected && <><AddColor colors={colors} /></>}
       <div>
         
         <p>Links:</p>

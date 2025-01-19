@@ -6,11 +6,11 @@ import { useReadContract } from 'wagmi'
 import { abi}  from '@/abi/PeaceColor.json'
 import Loader from "@/components/Loader";
 import { rgbToHex, type RGB } from "@/utils/colors";
-import { useEffect } from "react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+const smartContractAddress = process.env.NEXT_PUBLIC_SMART_CONTRACT_ADDRESS || "0x"
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -19,9 +19,10 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   const { data, isLoading } = useReadContract({
-    address: "0x6Ef1196F1b34Bf79A9d8DCB2AF6ef6A5EaC0CaD2",
+    address: smartContractAddress  as `0x${string}`,
     abi,
-    functionName: 'getColorOrder',
+    functionName: 'getLastColors',
+    args: [50]
   })
   let colors: RGB[] = data as RGB[];
   if (colors) {
@@ -34,7 +35,7 @@ export default function Home() {
       className={`${geistSans.variable} ${geistMono.variable}  grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen pb-20 font-[family-name:var(--font-geist-sans)]`}
     >
       <main className="flex flex-col w-full min-h-screen ">
-        <Menu />
+        <Menu colors={colors} />
         {isLoading && <div><Loader /></div>}
         {colors && colors.map((color: RGB, index: number, arr: RGB[]) => {
           const col = rgbToHex(color.red, color.green, color.blue);
