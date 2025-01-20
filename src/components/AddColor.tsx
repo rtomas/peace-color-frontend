@@ -63,7 +63,7 @@ useEffect(() => {
 }, [hash, isPending]);
   return (
     <div className="min-w-[300px] bg-gray-800 border border-gray-600 rounded-lg p-2 text-base flex flex-col gap-3">
-      <p>Choose a color for the PEACE!</p>
+      <p>Choose a color for the PEACE, <br />a AI will name it and then<br /> add it to a Smart Contract forever!</p>
       <input 
         type="color" 
         className="w-full border border-gray-500" 
