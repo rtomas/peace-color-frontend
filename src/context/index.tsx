@@ -28,9 +28,6 @@ export const modal = createAppKit({
     analytics: true, // Optional - defaults to your Cloud configuration
    // connectMethodsOrder: ['social', 'email'],
   },
-  themeVariables:{
-    '--w3m-accent': '#000000',
-  },
 
 })
 
