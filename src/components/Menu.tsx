@@ -26,9 +26,9 @@ const Menu = ({colors}: {colors: RGB[]}) => {
       
       { <ConnectButton />}
       {isConnected && <><AddColor colors={colors} /></>}
-      <div>
+      <div className="mt-auto">
         
-        <p>Links:</p>
+        <p>Code and info:</p>
         <p>
           *{' '}
           <a target="_blank" href="https://github.com/rtomas/peace-color-frontend" className="underline">
