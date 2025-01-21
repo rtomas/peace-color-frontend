@@ -11,10 +11,10 @@ const queryClient = new QueryClient()
 
 // Set up metadata
 const metadata = {
-  name: 'next-reown-appkit',
-  description: 'next-reown-appkit',
-  url: 'https://github.com/0xonerb/next-reown-appkit-ssr', // origin must match your domain & subdomain
-  icons: ['https://avatars.githubusercontent.com/u/179229932']
+  name: 'Peace Colors',
+  description: 'Peace Colors',
+  url: 'https://www.peace.tomasrawski.com.ar',
+  icons: ['https://www.peace.tomasrawski.com.ar/peace.svg']
 }
 
 // Create the modal
