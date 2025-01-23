@@ -26,7 +26,7 @@ export const modal = createAppKit({
   themeMode: 'dark' as const,
   features: {
     analytics: true, // Optional - defaults to your Cloud configuration
-   // connectMethodsOrder: ['social', 'email'],
+    connectMethodsOrder: ['social', 'email'],
   },
 
 })
