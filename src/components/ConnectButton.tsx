@@ -1,11 +1,16 @@
 'use client'
 
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
+import { useEffect } from "react";
 
 export const ConnectButton = () => {
   const { open } = useAppKit();
-  const {  isConnected } = useAppKitAccount()
+  const {  isConnected, status } = useAppKitAccount()
   
+  useEffect(() => {
+    console.log("isConnected", status)
+  }, [isConnected])
+
   const buttonStyle = {
     background: "url('reown.png') 12px center/37px no-repeat #202020",
     paddingLeft: "46px",
@@ -16,7 +21,8 @@ export const ConnectButton = () => {
   };
   return (
     <div className="flex justify-center">
-        {isConnected ? <appkit-button balance={"hide"} /> : <button style={buttonStyle} onClick={() => open()}>
+      
+        {isConnected ? <appkit-button balance={"hide"} /> : status === "connecting" ? <p>Connecting...</p> : <button style={buttonStyle} onClick={() => open()}>
           Connect Wallet
         </button>}
       </div>

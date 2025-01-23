@@ -13,8 +13,8 @@ const queryClient = new QueryClient()
 const metadata = {
   name: 'Peace Colors',
   description: 'Peace Colors',
-  url: 'https://www.peace.tomasrawski.com.ar',
-  icons: ['https://www.peace.tomasrawski.com.ar/peace.svg']
+  url: 'http://peace.tomasrawski.com.ar',
+  icons: ['https://peace.tomasrawski.com.ar/peace.svg']
 }
 
 // Create the modal

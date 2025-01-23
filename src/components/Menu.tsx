@@ -24,7 +24,7 @@ const Menu = ({colors}: {colors: RGB[]}) => {
       </div>
       <div className="text-center text-3xl">🕊️ Inmutable Peace</div>
       
-      { <ConnectButton />}
+      <ConnectButton />
       {isConnected && <><AddColor colors={colors} /></>}
       <div className="mt-auto">
         
