@@ -2,8 +2,8 @@
 
 import { wagmiAdapter, projectId, networks } from '../config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createAppKit } from '@reown/appkit/react'
-import React, { type ReactNode } from 'react'
+import { createAppKit, useAppKitAccount } from '@reown/appkit/react'
+import React, { useEffect, type ReactNode } from 'react'
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
 
 // Set up queryClient
@@ -31,8 +31,17 @@ export const modal = createAppKit({
 
 })
 
+
 function ContextProvider({ children, cookies }: { children: ReactNode; cookies: string | null }) {
   const initialState = cookieToInitialState(wagmiAdapter.wagmiConfig as Config, cookies)
+  const { isConnected } = useAppKitAccount()
+
+  useEffect(() => {
+    if (isConnected) {
+      modal.setPreferredAccountType('smartAccount', 'eip155');
+      console.log("set to smart account");
+    }
+  }, [isConnected])
 
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig as Config} initialState={initialState}>

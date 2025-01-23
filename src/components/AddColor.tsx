@@ -6,7 +6,7 @@ import { parseAbi } from 'viem'
 const smartContractAddress = process.env.NEXT_PUBLIC_SMART_CONTRACT_ADDRESS || "0x"
 
 const AddColor = ({colors}: {colors: RGB[]}) => {
-  const { writeContracts, isPending, data: hash, error } = useWriteContracts()
+  const { writeContracts, isPending, data: hash, error } = useWriteContracts();
   const [color, setColor] = useState<RGB | undefined>(undefined); 
   const [name, setName] = useState<string>("");
 
@@ -31,6 +31,7 @@ const AddColor = ({colors}: {colors: RGB[]}) => {
   };
 
   const handleAddColor = async (color:RGB) => {
+
     // send the list of colors to the AI  
     const colorNames = colors.map((c) => c.name).join(", ");
 
