@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { hexToRgb, type RGB } from '@/utils/colors';
 /* import { useAppKitAccount  } from '@reown/appkit/react' */
 import { encodeFunctionData } from 'viem'
-import { useWriteContract } from 'wagmi'
+/* import { useWriteContract } from 'wagmi' */
 import { useSendCalls } from 'wagmi/experimental'
 import { abi } from '../abi/PeaceColor.json'  
 

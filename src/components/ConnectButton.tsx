@@ -7,9 +7,6 @@ export const ConnectButton = () => {
   const { open } = useAppKit();
   const {  isConnected, status } = useAppKitAccount()
   
-  useEffect(() => {
-    console.log("isConnected", status)
-  }, [isConnected])
 
   const buttonStyle = {
     background: "url('reown.png') 12px center/37px no-repeat #202020",
