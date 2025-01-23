@@ -1,7 +1,6 @@
 'use client'
 
 import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
-import { useEffect } from "react";
 
 export const ConnectButton = () => {
   const { open } = useAppKit();

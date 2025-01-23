@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { hexToRgb, type RGB } from '@/utils/colors';
-/* import { useAppKitAccount  } from '@reown/appkit/react' */
-import { encodeFunctionData } from 'viem'
-/* import { useWriteContract } from 'wagmi' */
-import { useSendCalls } from 'wagmi/experimental'
-import { abi } from '../abi/PeaceColor.json'  
+import {  useWriteContracts } from 'wagmi/experimental'
+import { parseAbi } from 'viem'
 
 const smartContractAddress = process.env.NEXT_PUBLIC_SMART_CONTRACT_ADDRESS || "0x"
 
 const AddColor = ({colors}: {colors: RGB[]}) => {
-  //const { data: hash, writeContract, isPending } = useWriteContract();
-  const { sendCalls, isPending, data: hash, error } = useSendCalls();
+  const { writeContracts, isPending, data: hash, error } = useWriteContracts()
   const [color, setColor] = useState<RGB | undefined>(undefined); 
   const [name, setName] = useState<string>("");
 
@@ -36,7 +32,6 @@ const AddColor = ({colors}: {colors: RGB[]}) => {
 
   const handleAddColor = async (color:RGB) => {
     // send the list of colors to the AI  
-    // semd color and colors list
     const colorNames = colors.map((c) => c.name).join(", ");
 
     const response = await fetch('/api/nameColorAI', {
@@ -49,53 +44,22 @@ const AddColor = ({colors}: {colors: RGB[]}) => {
     }
     const data = await response.json();
 
+    const abi = parseAbi([
+      'function addColor(uint8 red, uint8 green, uint8 blue, string memory description) public',
+    ])
 
-    console.log('data', color, data);
-/*     writeContract({
-      address: smartContractAddress as `0x${string}`,
-      abi,
-      functionName: 'addColor',
-      args: [color.red, color.green, color.blue, data.name]
-    }) */
-    // sponsoring tx !!
-
-    const addColorCallData = encodeFunctionData({
-      abi,
-      functionName: 'addColor',
-      args: [color.red, color.green, color.blue, data.name]
-    })
-    
-    const SPONSORING_TX = {
-      to: smartContractAddress as `0x${string}`,
-      data: addColorCallData
-    }
-
-    const BICONOMY_PAYMASTER_CONTEXT = {
-      mode: 'SPONSORED',
-      calculateGasLimits: false,
-      expiryDuration: 300,
-      sponsorshipInfo: {
-        webhookData: {},
-        smartAccountInfo: {
-          name: 'SAFE',
-          version: '1.4.1'
-        }
+    writeContracts({
+      contracts: [
+      {
+        address: smartContractAddress as `0x${string}`,
+        abi,
+        functionName: 'addColor',
+        args: [color.red, color.green, color.blue, data.name]
       }
-    }
-
-    const context = {
-      biconomy: BICONOMY_PAYMASTER_CONTEXT,
-      reown: {
-        policyId: "9d113f59-71cf-4c66-b7fa-e79b5e34c414"
-      }
-    }
-    
-    sendCalls({
-      calls: [SPONSORING_TX],
+      ],
       capabilities: {
         paymasterService: {
           url: "https://paymaster-api.reown.com/11155111/rpc?projectId=07fe00193f4e4938dd3bee5142803995", // for sepolia 
-          context
         }
       }
     })
