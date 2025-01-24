@@ -24,7 +24,7 @@ const ColorRow = ({ color1, color2, colorName }: RowProps) => {
       className="w-full flex items-center justify-center h-20"
     >
       <div style={textStyle}>
-        {colorName}
+        <span dangerouslySetInnerHTML={{__html: colorName.replace(/[<>]/g, '')}} />
       </div>
     </div>
   );
