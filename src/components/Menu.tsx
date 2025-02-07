@@ -27,6 +27,8 @@ const Menu = ({colors}: {colors: RGB[]}) => {
       <ConnectButton />
       {isConnected && <><AddColor colors={colors} /></>}
 
+
+      <div className="mt-auto">
       <div className="flex flex-col gap-2 text-center">
 A contemporary manifesto where technology, <br />
 art and the collective desire for peace merge.<br />
@@ -39,11 +41,11 @@ blockchain, becomes immutable, reflecting the <br />
 permanent nature of harmony. <br />
 <br />
 Peace, as a principle, cannot be erased or altered, <br />
-just like these colors inscribed in an eternal record.
+just like these colors inscribed in an eternal record.<br />
+<br />
+<br />
       </div>
-      <div className="mt-auto">
-        
-        <p>Code and info:</p>
+        <p><b>Code and info:</b></p>
         <p>
           *{' '}
           <a target="_blank" href="https://github.com/rtomas/peace-color-frontend" className="underline">
