@@ -26,6 +26,21 @@ const Menu = ({colors}: {colors: RGB[]}) => {
       
       <ConnectButton />
       {isConnected && <><AddColor colors={colors} /></>}
+
+      <div className="flex flex-col gap-2 text-center">
+A contemporary manifesto where technology, <br />
+art and the collective desire for peace merge.<br />
+<br />
+Each participant chooses a color, their personal <br />
+interpretation of peace.<br />
+<br />
+This color, linked to a Smart Contract on the <br />
+blockchain, becomes immutable, reflecting the <br />
+permanent nature of harmony. <br />
+<br />
+Peace, as a principle, cannot be erased or altered, <br />
+just like these colors inscribed in an eternal record.
+      </div>
       <div className="mt-auto">
         
         <p>Code and info:</p>
