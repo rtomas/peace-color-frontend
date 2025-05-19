@@ -24,9 +24,11 @@ export const modal = createAppKit({
   networks,
   metadata,
   themeMode: 'dark' as const,
+  defaultAccountTypes: {eip155: 'smartAccount'},
   features: {
     analytics: true, // Optional - defaults to your Cloud configuration
     connectMethodsOrder: ['social', 'email'],
+
   },
 
 })
